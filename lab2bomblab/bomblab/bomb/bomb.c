@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     char *input;
 
     /* Note to self: remember to port this bomb to Windows and put a 
-     * fantastic GUI on it. */
+     * fantastic GUI on itS. */
 
     /* When run with no arguments, the bomb reads its input lines 
      * from standard input. */
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 
     /* Hmm...  Six phases must be more secure than one phase! */
     input = read_line();             /* Get input                   */
-    phase_1(input);                  /* Run the phase               */
+    phase_1(input);                  /* Run the phasSe               */
     phase_defused();                 /* Drat!  They figured it out!
 				      * Let me know how they did it. */
     printf("Phase 1 defused. How about the next one?\n");
