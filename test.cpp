@@ -4,10 +4,10 @@
  * @Author: xp.Zhang
  * @Date: 2023-12-05 01:15:06
  * @LastEditors: xp.Zhang
- * @LastEditTime: 2023-12-13 19:09:33
+ * @LastEditTime: 2024-01-17 18:42:41
  */
-#include<stdio.h>
-int main(){
+// #include<stdio.h>
+// int main(){
     // unsigned int x = 2147483648;
     // int y = (int)x; //-2147483648
     // printf("x = %d \n",y);
@@ -38,6 +38,20 @@ int main(){
 // 我们转换出这两个特别的补码 就可以&了
 // int conditional(int x, int y, int z)  // 8个ops
 // {
-    printf("%d", 160 % 16);
+     // printf("%d", 160 % 16);
 
+// }
+#include <iostream>
+#include <vector>
+
+void func() {
+    std::vector<int> v;
+    for (int i = 0; i < 10000000; ++i) {
+        v.push_back(i);
+    }
+}
+
+int main() {
+    func();
+    return 0;
 }
