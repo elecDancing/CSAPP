@@ -1,10 +1,11 @@
-// #define _GNU_SOURCE
+#define _GNU_SOURCE
 #include "cachelab.h"
-// #include "stdlib.h"
+#include "stdlib.h"
 #include <stdio.h>
 #include "getopt.h"
 #include <string.h>
 #define addrLen 8
+#include <stdbool.h> //In C program use bool need stdbool.h head file
 
 static int S;
 static int E;
@@ -13,6 +14,7 @@ static int hits = 0;
 static int misses = 0;
 static int evictions = 0;
 static int totalSet;
+bool verbose = false;
 
 typedef struct _Node{
     unsigned tag;
@@ -65,10 +67,21 @@ void addFirst(unsigned set, Node* node, LRU* curLru){
     *(curLru->size) = *(curLru->size) + 1;
 }
 
-void parseOption(int argc, char** argv, char** fileName){
+void print_help(){
+    printf("How Dare You! please use google! Now!!!!\n");
+}
+
+void parseOption(int argc, char* const argv[], char** fileName){
     int option;
-    while( (option = getopt(argc, argv, "s:E:b:t:")) != -1){
+    while( (option = getopt(argc, argv, "hvs:E:b:t:")) != -1){
         switch (option) {
+            case 'h':
+                print_help();
+                exit(0);
+            case 'v':
+                verbose = true; //set flag to output trace info
+                break;
+            break;
             case 's':
                 S = atoi(optarg);
             case 'E':
@@ -77,12 +90,14 @@ void parseOption(int argc, char** argv, char** fileName){
                 B = atoi(optarg);
             case 't':
                 strcpy(*fileName, optarg);
+            default:
+                print_help();
+                exit(-1);
         }
     }
-
-
     totalSet = 1 << S;
 }
+
 void update(unsigned address){
     unsigned mask = 0xFFFFFFFF;
     unsigned maskSet = mask >> (32 - S);
@@ -130,6 +145,7 @@ void update(unsigned address){
 
 
 
+
 void cacheSimulateWhole(char* fileName){
     // step1: new lru with s sets
     lru = malloc(totalSet * sizeof(*lru));
@@ -157,7 +173,7 @@ void cacheSimulateWhole(char* fileName){
     }
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* const argv[])
 {
     char* fileName = malloc(100 * sizeof(char));
 
