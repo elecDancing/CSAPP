@@ -2,6 +2,10 @@
     "files.associations": {
         "stdio.h": "c",
         "random": "c",
-        "getopt.h": "c"
+        "getopt.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c"
     }
 }

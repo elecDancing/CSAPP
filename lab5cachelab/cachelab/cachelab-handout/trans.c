@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: xp.Zhang
+ * @Date: 2024-01-17 00:00:11
+ * @LastEditors: xp.Zhang
+ * @LastEditTime: 2024-02-04 21:00:08
+ */
 /* 
  * trans.c - Matrix transpose B = A^T
  *
@@ -22,6 +30,21 @@ int is_transpose(int M, int N, int A[N][M], int B[M][N]);
 char transpose_submit_desc[] = "Transpose submission";
 void transpose_submit(int M, int N, int A[N][M], int B[M][N])
 {
+    int i, j, tmp;
+    int gap = 8;
+    if(M == 64)
+        gap = 4;
+    else if(M == 61)
+        gap = 16;
+    for(i = 0; i < N; i += gap){//whole matrix
+        for(j = 0; j < M; j += gap){
+            for(int m = i; m < i + gap && m < M; ++m){
+                for(int n = j; n < j + gap && n < N; ++n){
+                    B[n][m] = A[m][n];
+                }
+            }
+        }
+    }
 }
 
 /* 
