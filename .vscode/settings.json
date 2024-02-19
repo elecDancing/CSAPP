@@ -6,6 +6,9 @@
         "array": "c",
         "string_view": "c",
         "initializer_list": "c",
-        "utility": "c"
+        "utility": "c",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "sbuf.h": "c"
     }
 }
